@@ -1,0 +1,9 @@
+class Solution(object):
+    def findMedianSortedArrays(self, nums1, nums2):
+        combined = nums1 + nums2
+        combined.sort()
+        n = len(combined)
+        if(len(combined)% 2 == 1):
+            return combined[n/2]
+        avg = (combined[n/2] + combined[n/2-1])/2.0
+        return avg
