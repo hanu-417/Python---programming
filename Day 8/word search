@@ -1,0 +1,24 @@
+class Solution(object):
+    def exist(self, board, word):
+    
+        m = len(board)
+        n = len(board[0])
+        directions = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+        def traverse(current, i):
+            if i == len(word):
+                return True
+            temp = board[current[0]][current[1]]
+            board[current[0]][current[1]] = ""
+            for d in directions:
+                x = d[0]+ current[0]
+                y = d[1]+ current[1]
+                if 0<= x<m and 0<=y<n and board[x][y]==word[i]:
+                       if traverse((x, y), i+1):
+                         return True
+            board[current[0]][current[1]] = temp
+            return False
+        for i in range(m):
+            for j in range(n):
+                if board[i][j]==word[0] and traverse((i, j), 1):
+                    return True
+        return False
