@@ -1,0 +1,22 @@
+class Solution(object):
+    def combinationSum3(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        ans = []
+        ds = []
+        candidates=[i for i in range(1,10)]
+        def findCombinations(ind , target):
+            if len(ds) == k and target == 0:
+                    ans.append(ds[:])
+                    return
+            if len(ds) > k or target< 0 or ind > len(candidates)-1: 
+                    return             
+            ds.append(candidates[ind])             
+            findCombinations(ind+1,target-candidates[ind])
+            ds.pop()
+            findCombinations(ind+1,target)
+        findCombinations(0,n)    
+        return ans
