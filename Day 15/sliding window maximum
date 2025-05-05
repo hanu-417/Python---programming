@@ -1,0 +1,24 @@
+class Solution(object):
+    def maxSlidingWindow(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: List[int]
+        """
+        if k == 1:
+            return nums
+
+        slidingMax = [-10000] * (len(nums)-k+1)
+        dq = deque([0]) # save the index of local maximum
+
+        for i in range(1, len(nums)):
+            while dq and nums[dq[-1]] < nums[i]:
+                dq.pop()
+            dq.append(i)
+            if i - dq[0] >=k:
+                dq.popleft()
+            if i >= k-1:
+                slidingMax[i-k+1] = nums[dq[0]]
+        
+        return slidingMax
+        
