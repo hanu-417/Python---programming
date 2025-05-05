@@ -1,0 +1,11 @@
+class Solution(object):
+    def findKthLargest(self, nums, k):
+        hash_map={}
+        for num in nums:
+            hash_map[num]=hash_map.get(num,0)+1
+        x=sorted(list(hash_map.keys()),reverse=True)
+        for i in x:
+            k=k-hash_map[i]
+            if(k<=0):
+                return i
+        
