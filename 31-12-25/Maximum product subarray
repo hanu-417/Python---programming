@@ -1,0 +1,8 @@
+def maxProduct(nums):
+    curMax = curMin = res = nums[0]
+    for n in nums[1:]:
+        tmp = curMax
+        curMax = max(n, curMax*n, curMin*n)
+        curMin = min(n, tmp*n, curMin*n)
+        res = max(res, curMax)
+    return res
