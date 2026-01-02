@@ -1,0 +1,11 @@
+def combinationSum(candidates, target):
+    res = []
+    def backtrack(start, path, t):
+        if t==0:
+            res.append(path)
+            return
+        for i in range(start,len(candidates)):
+            if candidates[i]<=t:
+                backtrack(i, path+[candidates[i]], t-candidates[i])
+    backtrack(0,[],target)
+    return res
