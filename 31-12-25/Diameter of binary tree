@@ -1,0 +1,11 @@
+def diameterOfBinaryTree(root):
+    res = 0
+    def dfs(node):
+        nonlocal res
+        if not node: return 0
+        l = dfs(node.left)
+        r = dfs(node.right)
+        res = max(res, l+r)
+        return max(l,r)+1
+    dfs(root)
+    return res
