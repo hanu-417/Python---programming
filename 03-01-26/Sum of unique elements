@@ -1,0 +1,19 @@
+class Solution(object):
+    def sumOfUnique(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        freq = {}
+        for i in range(n):
+            if nums[i] in freq:
+                freq[nums[i]] += 1
+            else:
+                freq[nums[i]] = 1    
+        # return freq
+        res = []
+        for key in freq:
+            if freq[key] == 1:
+                res.append(key)
+        return sum(res)        
