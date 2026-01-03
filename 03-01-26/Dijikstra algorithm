@@ -1,0 +1,27 @@
+import java.util.*;
+class Main{
+public static void main(String[] a){
+Scanner s=new Scanner(System.in);
+int n=s.nextInt(),e=s.nextInt();
+int dist[]=new int[n];
+Arrays.fill(dist,Integer.MAX_VALUE);
+ArrayList<int[]> adj[]=new ArrayList[n];
+for(int i=0;i<n;i++)adj[i]=new ArrayList<>();
+for(int i=0;i<e;i++){
+int u=s.nextInt(),v=s.nextInt(),w=s.nextInt();
+adj[u].add(new int[]{v,w});
+adj[v].add(new int[]{u,w});
+}
+PriorityQueue<int[]> pq=new PriorityQueue<>((x,y)->x[1]-y[1]);
+dist[0]=0;
+pq.add(new int[]{0,0});
+while(!pq.isEmpty()){
+int x[]=pq.poll();
+for(int i[]:adj[x[0]])
+if(dist[x[0]]+i[1]<dist[i[0]]){
+dist[i[0]]=dist[x[0]]+i[1];
+pq.add(new int[]{i[0],dist[i[0]]});
+}
+}
+for(int i:dist)System.out.print(i+" ");
+}}
